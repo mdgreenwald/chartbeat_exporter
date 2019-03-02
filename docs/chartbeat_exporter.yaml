@@ -1,0 +1,60 @@
+apiVersion: v1
+kind: Service
+metadata:
+  annotations:
+  labels:
+    app: prometheus-chartbeat-exporter
+  name: prometheus-chartbeat-exporter
+spec:
+  ports:
+  - name: "9132"
+    port: 9132
+    protocol: TCP
+    targetPort: 9132
+  selector:
+    app: prometheus-chartbeat-exporter
+  type: ClusterIP
+
+---
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: prometheus-chartbeat-exporter
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: prometheus-chartbeat-exporter
+  template:
+    metadata:
+      labels:
+        app: prometheus-chartbeat-exporter
+    spec:
+      containers:
+      - image: mdgreenwald/chartbeat_exporter:v0.1.0
+        imagePullPolicy: IfNotPresent
+        name: prometheus-chartbeat-exporter
+        ports:
+        - containerPort: 9132
+        env:
+          - name: CHARTBEAT_API_KEY
+            valueFrom:
+              secretKeyRef:
+                name: prometheus-chartbeat-exporter-secret
+                key: apikey
+          - name: CHARTBEAT_HOST
+            value: "domain1.com,domain2.org,domain3.net"
+          - name: CHARTBEAT_POLL
+            value: "1"
+      terminationGracePeriodSeconds: 30
+
+---
+apiVersion: v1
+kind: Secret
+metadata:
+  name: prometheus-chartbeat-exporter-secret
+type: Opaque
+data:
+  apikey: {{ apikey }}
+
+---
