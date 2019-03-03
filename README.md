@@ -22,7 +22,7 @@ Exposes metrics at `0.0.0.0:9132/metrics`
 
 * `CHARTBEAT_API_KEY` = `4bTOp80NVxF7m4LupW4VzZqcfY8njE1r`
 * `CHARTBEAT_HOST` = `domain.com` OR `domain1.com,domain2.org,domain3.net`
-* `CHARTBEAT_POLL=` = `#` seconds OR `.###` milliseconds**†**
+* `CHARTBEAT_POLL=` = `#` seconds OR `.###` milliseconds **†**
 
 **†** *Chartbeat rate limit is 200 requests per minute*.[[1]](http://support.chartbeat.com/docs/api.html)
 
