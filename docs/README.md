@@ -1,8 +1,8 @@
 # Chartbeat Exporter - Kubernetes
 
+#### Example Kubernetes Manifest: ####
 
-####Example Kubernetes Manifest:####
-[chartbeat_exporter.yaml](chartbeat_exporter.yaml)
+**[chartbeat_exporter.yaml](chartbeat_exporter.yaml)**
 
 **Snippet:**
 
