@@ -27,7 +27,7 @@
 
 ```
 
-####Example Prometheus Configuration:####
+#### Example Prometheus Configuration: ####
 ```yaml
   - job_name: 'chartbeat_exporter'
     scrape_interval: 1s
